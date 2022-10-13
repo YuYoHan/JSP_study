@@ -4,7 +4,7 @@
     <title>formInput</title>
 </head>
 <body>
-    <form name="joinForm" action="join_db.jsp" method="post" onsubmit="sendit();">
+    <form name="joinForm" action="join_db.jsp" method="post" onsubmit="return sendit();">
         <fieldset>
             <legend>회원가입</legend>
             <input type="text" placeholder="아이디" name="userId" id="userId"> <br/>
@@ -52,15 +52,17 @@
             }
             if(username.value === "") {
                 alert("이름을 입력하세요");
-                if(username.value.length <2 || username.value.length >4) {
-                    alert("이름은 2글자이상 4글자 이하로 작성해주세요");
-                    return  false;
-                }
+                return false;
             }
-            if(userid.value === id && userpw.value === password && username === kor) {
+            if(username.value.length <2 || username.value.length >4) {
+                alert("이름은 2글자이상 4글자 이하로 작성해주세요");
+                return  false;
+            }
+            if(userid.value === id && userpw.value === password) {
                 alert("양식에 맞게 입력했습니다.");
                 return true;
             }
+            // return true;
         }
 
     </script>

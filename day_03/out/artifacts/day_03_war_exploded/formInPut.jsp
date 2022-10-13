@@ -1,17 +1,10 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: user
-  Date: 2022-10-12
-  Time: 오후 12:46
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>formInput</title>
 </head>
 <body>
-    <form name="joinForm" action="#" method="post" onsubmit="sendit();">
+    <form name="joinForm" action="join_db.jsp" method="post" onsubmit="return sendit();">
         <fieldset>
             <legend>회원가입</legend>
             <input type="text" placeholder="아이디" name="userId" id="userId"> <br/>
@@ -27,7 +20,7 @@
 
         function sendit() {
             // 영어와 숫자
-            const email = /^[a-zA-Z0-9]+$/
+            const id = /^[a-zA-Z0-9]+$/
             // 최소 8자, 최소 하나의 문자, 하나의 숫자 및 하나의 특수문자
             const password = "^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$"
             // 한글만
@@ -38,21 +31,38 @@
             const userpw = joinForm.userPw;
             const username = joinForm.userName;
 
-            if(userid.value === email) {
-                console.log("아이디 통과");
-                if (userpw.value === password) {
-                    console.log("비밀번호 통과");
-                    if (username.value === username) {
-                        console.log("이름 통과");
-                    } else {
-                        alert("이름 실패")
-                    }
-                } else {
-                    alert("비밀번호 실패")
-                }
-            } else {
-                alert("가입실패")
+            if(userid.value === "") {
+                alert("아이디를 입력하세요!");
+                userid.focus();
+                return false;
             }
+            if(userid.value.length < 5 || userid.value.length > 12) {
+                alert("아이디는 5자 이상 12자 이하로 작성해주세요!");
+                userid.focus();
+                return false;
+            }
+            if(userpw.value === "") {
+                alert("비밀번호를 입력하세요");
+                userpw.focus();
+                return false;
+            }
+            if(userpw.value.length < 8 || userpw.value.length > 16) {
+                alert("비밀빈호는 8이상 16이하로 작성해주세요!");
+                return false;
+            }
+            if(username.value === "") {
+                alert("이름을 입력하세요");
+                return false;
+            }
+            if(username.value.length <2 || username.value.length >4) {
+                alert("이름은 2글자이상 4글자 이하로 작성해주세요");
+                return  false;
+            }
+            if(userid.value === id && userpw.value === password) {
+                alert("양식에 맞게 입력했습니다.");
+                return true;
+            }
+            // return true;
         }
 
     </script>
