@@ -22,7 +22,6 @@
 
             if(cookie.getName().equals("crash_strawberry")) {
                 cookie.setValue("dont_eat");
-                response.addCookie(cookie);
             }
       }
 
