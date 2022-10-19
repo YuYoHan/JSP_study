@@ -27,12 +27,20 @@
             out.print(cookie.getName() + " : ");
             out.print(cookie.getValue() + "<br>");
 
-
+            if(cookie.getName().equals("crash_strawberry")) {
+                // 생명주기
+                // remove메소드가 없기 때문에 생명주기로 삭제해야 한다.
+                // 초단위로 지정하고 음수를 입력하면 브라우저 종료시 쿠키 삭제(default)
+                cookie.setMaxAge(0);
+                // 쿠키를 삭제한 것은 원본에 넣어주는 것이다.
+                response.addCookie(cookie);
+            }
             }
 
 
     }
 
 %>
+    <a href="getCookie.jsp">쿠키 삭제 확인하기~ </a>
 </body>
 </html>
