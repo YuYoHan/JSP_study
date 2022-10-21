@@ -7,7 +7,9 @@
     <form name="joinForm" action="join_db.jsp" method="post" onsubmit="return sendit();">
         <fieldset>
             <legend>회원가입</legend>
+            <span id="result" style="color: red; font-weight: bold"></span><br/>
             <input type="text" placeholder="아이디" name="userId" id="userId"> <br/>
+            <input type="button" value="중복체크" onclick="checkId();">
             <input type="password" placeholder="비밀번호" name="userPw" id="userPw"> <br />
             <input type="text" placeholder="이름을 입력하세요" name="userName" id="userName"> <br/>
             <input type="submit" value="가입하기" >
@@ -63,6 +65,42 @@
                 return true;
             }
             // return true;
+        }
+        function checkId() {
+            const userid = document.joinForm.userId;
+
+            if(userid.value.length == 0) {
+                result.innerHTML = "";
+            } else {
+                const xhr = new XMLHttpRequest();
+                xhr.open("POST", "checkId_db.jsp", true);
+
+                // xhr 객체가 상태가 변경이 되었으면 함수를 호출
+                xhr.onreadystatechange = function () {
+                    /*
+                    *   통신이 완료되었으면 true
+                    *   예를들면, 우편이 왔는데 우편함까지 오는 것은 성공한 것이다.
+                    *   전달까지는 성공이지만 사람이 받았는지는 알 수 가 없다.
+                    *   통신이 완료되어야만 if문 내부로 들어온다.
+                    * */
+                    if (xhr.readyState == XMLHttpRequest.DONE) {
+                        /*
+                        * 요청과 응답이 성공했다면 참
+                        * xhr.status == 200은 성공을 뜻한다.
+                        * */
+                        if(xhr.status == 200) {
+                            let txt = txt.trim();
+
+                            if(txt == "O") {
+                                result.innerHTML = "사용할 수 있는 아이디입니다."
+                            } else {
+                                result.innerHTML = "이미 존재하는 아이디입니다."
+                            }
+                        }
+                        xhr.send("userid="+userid.value);
+                    }
+                }
+            }
         }
 
     </script>
