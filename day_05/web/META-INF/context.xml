@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/">
+    <Resource
+        name="jdbc/mysql"
+        auth="Container"
+        type="javax.sql.DataSource"
+        driverClassName="com.mysql.cj.jdbc.Driver"
+        url="jdbc:mysql://localhost:3306/jsp"
+        username="root"
+        password="1234"
+        maxActive="20"
+        maxIdle="20"
+        maxWait="-1"
+    />
+    <!--
+        name : dbcp를 이용하기 위한 name(key값)
+        maxActive : 연결 최대 허용 개수
+        maxIdle : 항상 연결상태를 유지하는 개수
+        (보편적으로 maxActive와 maxIdle의 개수는 같게한다.)
+        maxWait : 커넥션 풀에 연결 가능한 커넥션이 없을 경우 대기하는 시간
+    -->
+</Context>
