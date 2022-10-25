@@ -98,7 +98,7 @@
     </style>
 </head>
 <body>
-<form name="joinForm" method="post" action="join_db.jsp">
+<form name="joinForm" method="post" action="join_db.jsp" onsubmit="return join()">
     <table>
         <tr>
             <td id="result" colspan="2"></td>
