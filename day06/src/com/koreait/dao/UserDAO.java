@@ -75,4 +75,28 @@ public class UserDAO {
         }
         return false;
     }
+
+    public boolean login(String userid, String userpw) {
+        try {
+            context = new InitialContext(null);
+            ds = (DataSource) context.lookup("java:comp/env/jdbc/mysql");
+            conn = ds.getConnection();
+
+            String sql = "select * from test_user where uesrid=? and userpw=?";
+
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, userid);
+            ps.setString(2, userpw);
+
+            rs = ps.executeQuery();
+
+            return rs.next();
+
+        } catch (NamingException e) {
+            System.out.println("네이밍 오류 : " + e);
+        } catch (SQLException se) {
+            System.out.println("SQL오류 : " + se);
+        }
+        return false;
+    }
 }
