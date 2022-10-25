@@ -11,7 +11,10 @@
     session.setAttribute("loginUser", userid);
     response.sendRedirect("mainView.jsp");
   } else{
-    response.sendRedirect("loginView.jsp?l=f");
+    out.println("<script>");
+    out.println("alert('로그인 실패!')");
+    out.println("</script>");
+    response.sendRedirect("loginView.jsp");
   }
 
 %>

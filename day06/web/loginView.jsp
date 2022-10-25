@@ -66,8 +66,7 @@
             <tr>
                 <th>아이디</th>
                 <td>
-                    <input type="text" name="userid" placeholder="아이디를 입력하세요"
-                           value="<%=userid==null?"":userid%>">
+                    <input type="text" name="userid" placeholder="아이디를 입력하세요" value="<%=userid==null?"":userid%>">
                 </td>
             </tr>
             <tr>
@@ -83,5 +82,5 @@
     </form>
 </div>
 </body>
-<script src="./user.js"></script>
+<script src="./js/user.js"></script>
 </html>
